@@ -9,17 +9,17 @@ void f_push(stack_t **top, unsigned int line_number)
 {
 	int n, i = 0;
 
-	if (carrier.arg)
+	if (bus.arg)
 	{
-		if (carrier.arg[0] == '-')
+		if (bus.arg[0] == '-')
 			i++;
-		while (carrier.arg[i] != '\0')
+		while (bus.arg[i] != '\0')
 		{
-		if (carrier.arg[i] < 48 || carrier.arg[i] > 57)
+		if (bus.arg[i] < 48 || bus.arg[i] > 57)
 		{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			fclose(carrier.file);
-			free(carrier.line);
+			fclose(bus.file);
+			free(bus.line);
 			free_stack(*top);
 			exit(EXIT_FAILURE);
 		}
@@ -29,13 +29,13 @@ void f_push(stack_t **top, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		fclose(carrier.file);
-		free(carrier.line);
+		fclose(bus.file);
+		free(bus.line);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(carrier.arg);
-	if (carrier.setter == 0)
+	n = atoi(bus.arg);
+	if (bus.setter == 0)
 		addnode(top, n);
 	else
 		add_queue_node(top, n);
